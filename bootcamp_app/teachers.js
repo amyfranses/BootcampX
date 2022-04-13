@@ -8,7 +8,6 @@ const pool = new Pool({
 });
 
 pool.query(`
-
 SELECT DISTINCT teachers.name AS teacher, cohorts.name AS cohort
 FROM assistance_requests
 JOIN students ON students.id = student_id
@@ -19,8 +18,8 @@ ORDER BY teacher;
 `
   )
   .then(res => {
-    res.rows.forEach(user => {
-      console.log(`${user.cohort}: ${user.teacher}`)
+    res.rows.forEach(row => {
+      console.log(`${row.cohort}: ${row.teacher}`)
     })
     })
   .catch(err => console.error('query error', err.stack));
